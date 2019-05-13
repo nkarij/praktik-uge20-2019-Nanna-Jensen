@@ -1,0 +1,9 @@
+@import 'bemskel.css';
+button {
+  display: block;
+  margin: 10px auto;
+  height: 30px;
+  width: 20%;
+}
+
+/*# sourceMappingURL=style.css.map */
