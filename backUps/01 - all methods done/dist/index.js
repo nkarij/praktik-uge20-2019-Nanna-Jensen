@@ -1,25 +1,9 @@
 document.addEventListener('DOMContentLoaded', function(){
 
-// opret administrator
-let institutionManager = new InstitutionAdmin("Admin");
-
-// REFERENCER TIL HTML
-let buttonAddInstituion = document.querySelector(".add-institution");
-let buttonRemoveInstituion = document.querySelector(".remove-institution");
-let buttonAddEducation = document.querySelector(".add-education-to-institution");
-let buttonRemoveEducation = document.querySelector(".remove-education-from-institution");
-let buttonAddSchoolClass = document.querySelector(".add-schoolclass-to-education");
-let buttonRemoveSchoolClass = document.querySelector(".remove-schoolclass-from-education");
-// NB BLIVER IKKE BRUGT ENDNU:
-let testButtonWriteToDOM = document.querySelector(".write-all-schoolclasses-to-dom");
-let cssSelector = "#list-container";
-
-
 // NB DET ER SINDSYGT VIGTIGT AT HOLDE STYR PÅ:
 // HVAD DER ER JSONINPUT OG HVAD DER ER CLASS/CONSTRUCTOR
-// MAN SKAL FORESTILLE SIG AT LET DATA ALLEREDE ER PARSED FRA FX DATABASE.
 
-// DETTE SKAL LÆGGES IND I EN FETCH HVIS JEG FÅR TID
+// MAN SKAL FORESTILLE SIG AT LET DATA ALLEREDE ER PARSED FRA FX DATABASE.
 
 let data = {
     "institutions": 
@@ -75,7 +59,8 @@ let data = {
 	]
 }
 
-
+// opret administrator
+let institutionManager = new InstitutionAdmin("Admin");
 // første array
 let jsonInstitutions = data.institutions;
 // console.log(institutions);
@@ -118,7 +103,19 @@ jsonInstitutions.forEach(jsoninstitution => {
 
 // // NU LIGGER ALTING KNYTTET TIL INSTITUTIONMANAGER
 // let student1 = institutionManager.institutions[0].educations[0].schoolclasses[0].students[0];
+// console.log(student1);
 
+
+// REFERENCER TIL HTML
+let buttonAddInstituion = document.querySelector(".add-institution");
+let buttonRemoveInstituion = document.querySelector(".remove-institution");
+let buttonAddEducation = document.querySelector(".add-education-to-institution");
+let buttonRemoveEducation = document.querySelector(".remove-education-from-institution");
+let buttonAddSchoolClass = document.querySelector(".add-schoolclass-to-education");
+let buttonRemoveSchoolClass = document.querySelector(".remove-schoolclass-from-education");
+let buttonWriteSchoolClassesToDom = document.querySelector(".write-all-schoolclasses-to-dom");
+
+// TROR IKKE RESTEN AT DENNE FIL VIRKER MED DET NYE JSON DATA-STRUKTUR.
 // MÅSKE SKULLE JEG LAVE NOGLE GLOBALE INDEXVARIABLER VARIABLER:
 // måske skal jeg returnere inde i min class, så der ikke er gentagelser herunder.
 
@@ -126,17 +123,13 @@ let institutionIndex = 1;
 let educationIndex = 0;
 let schoolClassIndex = 0;
 
-let institution = institutionManager.institutions[institutionIndex];
-let education = institution.educations[educationIndex];
-let schoolClass = education.schoolclasses[schoolClassIndex];
-
 // ADD INSTITUTION
 let institutionName1 = "KEA"
 buttonAddInstituion.addEventListener('click', function(event){
     event.preventDefault();
     // denser navn og institutionManager med
-    let newInstitution = new Institution(institutionName1, institutionManager);
-    institutionManager.addInstitution(newInstitution);
+    institutionObject = new Institution(institutionName1, institutionManager);
+    institutionManager.addInstitution(institutionObject);
     console.log("tilføjer ny institution med navn: " + institutionName1);
     // console.log(institutionManager);
     return institutionManager.institutions;
@@ -146,8 +139,8 @@ buttonAddInstituion.addEventListener('click', function(event){
 // let institutionIndex = 1;
 buttonRemoveInstituion.addEventListener('click', function(){
     event.preventDefault();
-    let removeThisInstitution = institution;
-    // console.log(removeThisInstitution);
+    let removeThisInstitution = institutionManager.institutions[institutionIndex];
+    console.log(removeThisInstitution);
     institutionManager.removeInstitution(removeThisInstitution);
     console.log("fjerner institution " + removeThisInstitution.name + " med index: " + institutionIndex);
     // console.log(institutionManager);
@@ -158,15 +151,15 @@ buttonRemoveInstituion.addEventListener('click', function(){
 let addEducationName = "Digital Media";
 buttonAddEducation.addEventListener('click', function(event){
     event.preventDefault();
-    // let institution = institutionManager.institutions[institutionIndex];
+    let institution = institutionManager.institutions[institutionIndex];
     // sender navn og institution med (her er det bestemt af hardcoded index)
-    let newEducationObject = new Education(addEducationName, institution);
-    // console.log(newEducationObject);
-    institution.addEducation(newEducationObject);
-    // console.log(institution.educations);
-    console.log("tilføjer uddannelse " + newEducationObject.name + " til institution med index " + institutionIndex);
+    let educationObject = new Education(addEducationName, institution);
+    // console.log(educationObject);
+    institution.addEducation(educationObject);
+    // console.log(institutionObject.educations);
+    console.log("tilføjer uddannelse " + educationObject.name + " til institution med index " + institutionIndex);
     // console.log(institutionManager);
-    return institution.educations;
+    return educationObject;
 })
 
 
@@ -175,7 +168,7 @@ buttonAddEducation.addEventListener('click', function(event){
 buttonRemoveEducation.addEventListener('click', function(){
     event.preventDefault();
     // NB find institutionIndex oppe v Remove Institutions
-    // let institution = institutionManager.institutions[institutionIndex];
+    let institution = institutionManager.institutions[institutionIndex];
     let removeThisEducation = institution.educations[educationIndex];
     // console.log(removeEducation);
     institution.removeEducation(removeThisEducation);
@@ -191,61 +184,26 @@ buttonRemoveEducation.addEventListener('click', function(){
 let addSchoolClassName = "WUHF1";
 buttonAddSchoolClass.addEventListener('click', function(event){
     event.preventDefault();
-    let newSchoolClassObject = new Schoolclass(addSchoolClassName, education);
-    education.addSchoolClass(newSchoolClassObject);
-    console.log("tilføjer klasse " + newSchoolClassObject.name + " til education med index " + educationIndex);
+    // nb, sender altid navnet med i constructoren
+    let educationObject = institutionManager.institutions[institutionIndex].educations[educationIndex];
+    console.log(educationObject);
+    let schoolClassObject = new Schoolclass(addSchoolClassName, educationObject);
+    educationObject.addSchoolClass(schoolClassObject);
+    console.log("tilføjer klasse " + schoolClassObject.name + " til education med index " + educationIndex);
     // console.log(institutionManager);
-    return education.schoolclasses;
+    return educationObject.schoolclasses;
 })
 
 // REMOVE SCHOOLCLASS FROM EDUCATION
 // let schoolClassIndex = 0;
 buttonRemoveSchoolClass.addEventListener('click', function(){
-    let removeThisSchoolClass = schoolClass;
-    education.removeSchoolClass(removeThisSchoolClass);
+    // gentagelse > skal flyttes op, evt sammen med indexet
+    let educationObject = institutionManager.institutions[institutionIndex].educations[educationIndex];
+    let removeThisSchoolClass = educationObject.schoolclasses[schoolClassIndex];
+    educationObject.removeSchoolClass(removeThisSchoolClass);
     console.log("fjerner Skoleklasse " + removeThisSchoolClass.name +  " fra udddannelsen med index: " + institutionIndex);
     // console.log(institutionManager);
-    return education.schoolclasses;
+    return educationObject.schoolclasses;
 });
 
-// testet:
-// WRITE SELECTED SINGLE INPUT TO DOM
-// testButtonWriteToDOM.addEventListener('click', function(event){
-//     event.preventDefault();
-//     // metoden modtager 2 argumenter: object + css-selector
-//     institutionManager.writeSelectedSingleInputToDOM(institutionManager.institutions, cssSelector);
-// });
 
-// testet:
-// WRITE SELECTED ARRAY INPUT TO DOM
-// testButtonWriteToDOM.addEventListener('click', function(event){
-//     event.preventDefault();
-//     // metoden modtager 2 argumenter: object + css-selector
-//     institutionManager.writeSelectedArrayToDOM(schoolClass.students, cssSelector);
-// });
-
-// testet:
-// WRITE ALL INSTITUTIONS TO DOM
-// testButtonWriteToDOM.addEventListener('click', function(event){
-//     event.preventDefault();
-//     console.log("trykket3");
-//     institutionManager.writeAllInstitutionsToDOM(cssSelector);
-// });
-
-// testet:
-// WRITE ALL SCHOOLCLASSES TO DOM
-// testButtonWriteToDOM.addEventListener('click', function(event){
-//     event.preventDefault();
-//     // console.log("trykket2");
-//     institutionManager.writeAllSchoolClassesToDOM(cssSelector);
-// });
-
-// testet:
-// WRITE ALL STUDENTS TO DOM
-// testButtonWriteToDOM.addEventListener('click', function(event){
-//     event.preventDefault();
-//     console.log("trykket2");
-//     institutionManager.writeAllStudentsToDOM(cssSelector);
-// });
-
-});
