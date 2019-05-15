@@ -1,9 +1,157 @@
 @import 'bemskel.css';
+@import 'fonts.css';
+// button {
+//     display: block;
+//     margin: 10px auto;
+//     height: 30px;
+//     width: 20%;
+// }
 
-
-button {
-    display: block;
-    margin: 10px auto;
-    height: 30px;
-    width: 20%;
+* {
+    box-sizing: border-box;
 }
+
+body {
+    margin: 0;
+    height: 150vh;
+    background-color: rgb(58, 58, 58);
+}
+
+// ul, li {
+//     padding: 0;
+//     margin: 0;
+//     list-style: none;
+// }
+
+
+// PAGEWRAPPER
+
+.page-wrapper {
+    margin: 2rem 15rem;
+    height: 100%;
+    background-color: darkslategray;
+}
+
+
+// HEADER
+
+.header {
+    background-color: black;
+}
+
+.admin-pageheading {
+    text-align: center;
+}
+
+
+
+// NAVIGATION
+
+.main-nav {
+
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem var(--page-frame-padding-lr);
+    height: 10vh;
+    width: 100%;
+    border-bottom: 3px solid var(--menu-active-color);
+
+    > ul {
+        width: 100%;
+        display: flex;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    .menu-list {
+        justify-content: flex-start;
+
+        .menu-list__item {
+            width: var(--menu-tabs);
+            height: 100%;
+            // line-height: 3rem;
+            
+        }
+
+        // FUCKING ICONS...
+        .menu-list__icon-wrap {
+            // height: 100%;
+            // line-height: 6rem;
+            .fas, .far {
+                font-size: 2rem;
+                line-height: 3rem;
+                color: var(--nav-text-color);
+            }
+        }
+
+        .menu-list__link {
+            display: inline-block;
+            height: 100%;
+            line-height: 3rem;
+            vertical-align: middle;
+        }
+
+        // .menu-list__link--active {
+        //     background-color: rgb(1, 1, 167);
+        // }
+
+           
+    }
+
+    .stat-list {
+        justify-content: flex-end;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+
+        .stat-list__icon {
+            height: var(--stat-tabs);
+            width: var(--stat-tabs);
+            // se også fonts.css
+            position: relative;
+        }
+        
+        .stat-list__badge {
+            height: 17px;
+            width: 15px;
+            border-radius: 5px;
+            background-color: red;
+            color: white;
+            position: absolute;
+            bottom: 0;
+            right: 6px;
+        }
+    }
+}
+
+// PAGES - globals
+
+.main {
+    padding: 2rem var(--page-frame-padding-lr);
+}
+
+.show-page-content {
+    display: block;
+}
+
+.hide-page-content {
+    display: none;
+}
+
+
+// PAGE 2
+
+#page-2 .data-list {
+    margin: 2rem auto;
+}
+
+#page-2 .data-list li {
+    margin: 1rem auto;
+}
+
+
+
+
+
+

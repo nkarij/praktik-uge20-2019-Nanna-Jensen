@@ -1,0 +1,76 @@
+
+/* GLOBALS */
+
+html {
+    font-size: 10px;
+}
+
+:root {
+    --menu-tabs: 140px;
+    --stat-tabs: 40px;
+    --nav-text-color: rgb(85, 85, 252);
+    --menu-active-color: rgb(0, 0, 216);
+    --plain-text-color: rgb(184, 184, 184);
+    --page-heading: 3rem;
+    --page-subheading: 2rem;
+    --page-text: 1.5rem;
+    --page-frame-padding-lr: 4rem;
+}
+
+.admin-pageheading {
+    font-size: 2.5rem;
+    color: rgb(120, 158, 48);
+    margin: 0;
+    padding: 2rem 0;
+}
+
+/* .main-nav {
+    font-size: 3rem;
+} */
+
+
+.menu-list__link {
+    color: var(--nav-text-color);
+    text-decoration: none;
+    font-size: 2.5rem;
+    font-weight: normal;
+}
+
+.stat-list__icon {
+    height: var(--stat-tabs);
+    width: var(--stat-tabs);
+    color: grey;
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+
+/* page 1 */
+
+.page__heading {
+    font-size: var(--page-heading);
+    color: white;
+}
+
+.page__subheading {
+    font-size: var(--page-subheading);
+    color: var(--plain-text-color);
+}
+
+.page__paragraph {
+    font-size: var(--page-text);
+    color: var(--plain-text-color);
+}
+
+em {
+    color: rgb(165, 165, 71);
+    font-style: normal;
+    font-weight: bold;
+}
+
+/* PAGE 2 */
+
+.page-2-data-list li {
+    font-size: var(--page-text);
+    /* color: var(--plain-text-color); */
+}

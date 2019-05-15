@@ -2,83 +2,32 @@ document.addEventListener('DOMContentLoaded', function(){
 
 // opret administrator
 let institutionManager = new InstitutionAdmin("Admin");
+// console.log(institutionManager);
+let statsManager = new StatsManager(institutionManager);
+let classHidePage = "hide-page-content";
+let classShowPage = "show-page-content"
+let navManager = new NavManager(classHidePage, classShowPage);
 
 // REFERENCER TIL HTML
-let buttonAddInstituion = document.querySelector(".add-institution");
-let buttonRemoveInstituion = document.querySelector(".remove-institution");
-let buttonAddEducation = document.querySelector(".add-education-to-institution");
-let buttonRemoveEducation = document.querySelector(".remove-education-from-institution");
-let buttonAddSchoolClass = document.querySelector(".add-schoolclass-to-education");
-let buttonRemoveSchoolClass = document.querySelector(".remove-schoolclass-from-education");
-// NB BLIVER IKKE BRUGT ENDNU:
-let testButtonWriteToDOM = document.querySelector(".write-all-schoolclasses-to-dom");
+let testButtonWriteToDOM = document.querySelector(".test-button");
 let cssSelector = "#list-container";
 
 
-// NB DET ER SINDSYGT VIGTIGT AT HOLDE STYR PÅ:
-// HVAD DER ER JSONINPUT OG HVAD DER ER CLASS/CONSTRUCTOR
-// MAN SKAL FORESTILLE SIG AT LET DATA ALLEREDE ER PARSED FRA FX DATABASE.
+// HENTER DATA
+fetch("data/data.json")
+// mellem-then() skal altid skrives på denne/samme måde
+.then((response)=>{
+    // console.log(response);
+    return response.json();
+})
+.then((systemdata)=>{
 
-// DETTE SKAL LÆGGES IND I EN FETCH HVIS JEG FÅR TID
-
-let data = {
-    "institutions": 
-    [
-		{
-			"name": "Roskilde",
-            "educations": 
-            [
-				{
-					"name": "Webudvikler",
-                    "schoolclasses": 
-                    [
-						{
-							"name": "WUHF01",
-                            "students": 
-                            [
-								{
-									"name": "Ole"
-								},
-								{
-									"name": "Hans"
-								}
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "København",
-            "educations": 
-            [
-				{
-					"name": "Mediegrafiker",
-                    "schoolclasses": 
-                    [
-						{
-							"name": "MEHF01",
-                            "students": 
-                            [
-								{
-									"name": "Mickey"
-								},
-								{
-									"name": "Mouse"
-								}
-							]
-						}
-					]
-				}
-			]
-		},
-	]
-}
-
+let data = systemdata;
+// console.log(data);
 
 // første array
 let jsonInstitutions = data.institutions;
-// console.log(institutions);
+// console.log(jsonInstitutions);
 
 // looper institutions og skaber ny constructor for hver institution, sender navnet med
 jsonInstitutions.forEach(jsoninstitution => {
@@ -130,83 +79,83 @@ let institution = institutionManager.institutions[institutionIndex];
 let education = institution.educations[educationIndex];
 let schoolClass = education.schoolclasses[schoolClassIndex];
 
-// ADD INSTITUTION
-let institutionName1 = "KEA"
-buttonAddInstituion.addEventListener('click', function(event){
-    event.preventDefault();
-    // denser navn og institutionManager med
-    let newInstitution = new Institution(institutionName1, institutionManager);
-    institutionManager.addInstitution(newInstitution);
-    console.log("tilføjer ny institution med navn: " + institutionName1);
-    // console.log(institutionManager);
-    return institutionManager.institutions;
-});
+// // ADD INSTITUTION
+// let institutionName1 = "KEA"
+// buttonAddInstituion.addEventListener('click', function(event){
+//     event.preventDefault();
+//     // denser navn og institutionManager med
+//     let newInstitution = new Institution(institutionName1, institutionManager);
+//     institutionManager.addInstitution(newInstitution);
+//     console.log("tilføjer ny institution med navn: " + institutionName1);
+//     // console.log(institutionManager);
+//     return institutionManager.institutions;
+// });
 
-// REMOVE INSTITUION 
-// let institutionIndex = 1;
-buttonRemoveInstituion.addEventListener('click', function(){
-    event.preventDefault();
-    let removeThisInstitution = institution;
-    // console.log(removeThisInstitution);
-    institutionManager.removeInstitution(removeThisInstitution);
-    console.log("fjerner institution " + removeThisInstitution.name + " med index: " + institutionIndex);
-    // console.log(institutionManager);
-    return institutionManager;
-});
+// // REMOVE INSTITUION 
+// // let institutionIndex = 1;
+// buttonRemoveInstituion.addEventListener('click', function(){
+//     event.preventDefault();
+//     let removeThisInstitution = institution;
+//     // console.log(removeThisInstitution);
+//     institutionManager.removeInstitution(removeThisInstitution);
+//     console.log("fjerner institution " + removeThisInstitution.name + " med index: " + institutionIndex);
+//     // console.log(institutionManager);
+//     return institutionManager;
+// });
 
-// ADD EDUCATION TO INSTITUTION
-let addEducationName = "Digital Media";
-buttonAddEducation.addEventListener('click', function(event){
-    event.preventDefault();
-    // let institution = institutionManager.institutions[institutionIndex];
-    // sender navn og institution med (her er det bestemt af hardcoded index)
-    let newEducationObject = new Education(addEducationName, institution);
-    // console.log(newEducationObject);
-    institution.addEducation(newEducationObject);
-    // console.log(institution.educations);
-    console.log("tilføjer uddannelse " + newEducationObject.name + " til institution med index " + institutionIndex);
-    // console.log(institutionManager);
-    return institution.educations;
-})
-
-
-// REMOVE EDUCATION FROM INSTITUTION
-// let educationIndex = 0;
-buttonRemoveEducation.addEventListener('click', function(){
-    event.preventDefault();
-    // NB find institutionIndex oppe v Remove Institutions
-    // let institution = institutionManager.institutions[institutionIndex];
-    let removeThisEducation = institution.educations[educationIndex];
-    // console.log(removeEducation);
-    institution.removeEducation(removeThisEducation);
-    // console.log(institutionManager);
-    console.log("fjerner uddannelse " + removeThisEducation.name +  " med index: " + institutionIndex);
-    return institution.educations;
-})
+// // ADD EDUCATION TO INSTITUTION
+// let addEducationName = "Digital Media";
+// buttonAddEducation.addEventListener('click', function(event){
+//     event.preventDefault();
+//     // let institution = institutionManager.institutions[institutionIndex];
+//     // sender navn og institution med (her er det bestemt af hardcoded index)
+//     let newEducationObject = new Education(addEducationName, institution);
+//     // console.log(newEducationObject);
+//     institution.addEducation(newEducationObject);
+//     // console.log(institution.educations);
+//     console.log("tilføjer uddannelse " + newEducationObject.name + " til institution med index " + institutionIndex);
+//     // console.log(institutionManager);
+//     return institution.educations;
+// })
 
 
-// ADD SCHOOL CLASS TO EDUCATION
-//  ER NÅET HER TIL, SKAL TIL AT TILFØJE NY KLASSE.
-// husk at institution index + educationindex er defineret længere oppe.
-let addSchoolClassName = "WUHF1";
-buttonAddSchoolClass.addEventListener('click', function(event){
-    event.preventDefault();
-    let newSchoolClassObject = new Schoolclass(addSchoolClassName, education);
-    education.addSchoolClass(newSchoolClassObject);
-    console.log("tilføjer klasse " + newSchoolClassObject.name + " til education med index " + educationIndex);
-    // console.log(institutionManager);
-    return education.schoolclasses;
-})
+// // REMOVE EDUCATION FROM INSTITUTION
+// // let educationIndex = 0;
+// buttonRemoveEducation.addEventListener('click', function(){
+//     event.preventDefault();
+//     // NB find institutionIndex oppe v Remove Institutions
+//     // let institution = institutionManager.institutions[institutionIndex];
+//     let removeThisEducation = institution.educations[educationIndex];
+//     // console.log(removeEducation);
+//     institution.removeEducation(removeThisEducation);
+//     // console.log(institutionManager);
+//     console.log("fjerner uddannelse " + removeThisEducation.name +  " med index: " + institutionIndex);
+//     return institution.educations;
+// })
 
-// REMOVE SCHOOLCLASS FROM EDUCATION
-// let schoolClassIndex = 0;
-buttonRemoveSchoolClass.addEventListener('click', function(){
-    let removeThisSchoolClass = schoolClass;
-    education.removeSchoolClass(removeThisSchoolClass);
-    console.log("fjerner Skoleklasse " + removeThisSchoolClass.name +  " fra udddannelsen med index: " + institutionIndex);
-    // console.log(institutionManager);
-    return education.schoolclasses;
-});
+
+// // ADD SCHOOL CLASS TO EDUCATION
+// //  ER NÅET HER TIL, SKAL TIL AT TILFØJE NY KLASSE.
+// // husk at institution index + educationindex er defineret længere oppe.
+// let addSchoolClassName = "WUHF1";
+// buttonAddSchoolClass.addEventListener('click', function(event){
+//     event.preventDefault();
+//     let newSchoolClassObject = new Schoolclass(addSchoolClassName, education);
+//     education.addSchoolClass(newSchoolClassObject);
+//     console.log("tilføjer klasse " + newSchoolClassObject.name + " til education med index " + educationIndex);
+//     // console.log(institutionManager);
+//     return education.schoolclasses;
+// })
+
+// // REMOVE SCHOOLCLASS FROM EDUCATION
+// // let schoolClassIndex = 0;
+// buttonRemoveSchoolClass.addEventListener('click', function(){
+//     let removeThisSchoolClass = schoolClass;
+//     education.removeSchoolClass(removeThisSchoolClass);
+//     console.log("fjerner Skoleklasse " + removeThisSchoolClass.name +  " fra udddannelsen med index: " + institutionIndex);
+//     // console.log(institutionManager);
+//     return education.schoolclasses;
+// });
 
 // testet:
 // WRITE SELECTED SINGLE INPUT TO DOM
@@ -248,4 +197,49 @@ buttonRemoveSchoolClass.addEventListener('click', function(){
 //     institutionManager.writeAllStudentsToDOM(cssSelector);
 // });
 
+// testet:
+// WRITE ALL DATA TO DOM
+// testButtonWriteToDOM.addEventListener('click', function(event){
+//     event.preventDefault();
+//     console.log("trykket2");
+//     institutionManager.writeAllDataToDOM("#page-2 .data-container");
+// });
+
+
+//  SHOW AND HIDE PAGES
+
+let menuTabsArray = document.querySelectorAll(".menu-list__link");
+console.log(menuTabsArray);
+
+
+menuTabsArray.forEach(tab => {
+    tab.addEventListener('click', function(event) {
+        let target = event.target;
+        let href = target.href;
+        let cssSelector = "#" + href.substring(href.length - 6);
+        navManager.togglePageDisplay(cssSelector);
+    });
 });
+
+// WRITE ALL DATA (AUTO);
+// pageTwoLoadData();
+
+
+// function pageTwoLoadData() {
+//     institutionManager.writeAllDataToDOM("#page-2 .data-container", "data-list");
+//     statsManager.countAllInstitutions(".institution-stats span");
+//     statsManager.countAllEducations(".education-stats span");
+//     statsManager.countAllSchoolClasses(".schoolclass-stats span");
+//     statsManager.countAllSchoolStudents(".student-stats span");
+        
+// }
+
+
+
+
+
+}); // fetch slutter
+
+}); // DOMContentLoaded slutter
+
+

@@ -1,0 +1,21 @@
+{
+    "fornavn": "Buller",
+    "basic": {
+        "efternavn": "Bumle",
+        "alder": 45,
+        "mand": true,
+        "børn": [
+            {"fornavn": "Buster", 
+            "efternavn": "Bumle"},
+            {"fornavn": "Bølle", 
+            "efternavn": "Bumle"},
+            {"fornavn": "Bølle", 
+            "efternavn": "Bumle"}
+        ]
+    },
+    "sportsgrene": [
+        "Havelåge-åbning", 
+        "Sofa-zappning",
+        "e-sport"
+    ]
+}

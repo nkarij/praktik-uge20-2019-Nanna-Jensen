@@ -28,6 +28,32 @@ class InstitutionAdmin {
         })
     }
 
+    // NB DENNE FUNCTION ER LIDT SPECIEL, FORDI DEN MODTAGER 2 CSS-SELECTORER.
+    // SPØRG ADY HVORDAN MAN DYNAMISK TILFØJER CLASSES
+    writeAllDataToDOM(cssSelector1, cssSelector2){
+        // sender en class med til createHTML
+        StaticClasses.class = cssSelector2;
+        this.institutions.forEach(institutionitem => {
+            // skriv institutions til DOM
+            StaticClasses.createHTML(institutionitem, cssSelector1);
+            // loop educations
+            institutionitem.educations.forEach(educationitem => {
+                // createHTML modtager object + cssSelector
+                // her sender jeg object + cssSelector med, som burde være institutionitem.name
+                StaticClasses.createHTML(educationitem, "." + institutionitem.name);
+                // loop schoolclasses
+                educationitem.schoolclasses.forEach(schoolclassitem => {
+                    StaticClasses.createHTML(schoolclassitem, "." + educationitem.name);
+                    // loop students
+                    schoolclassitem.students.forEach(student => {
+                        StaticClasses.createHTML(student, "." + schoolclassitem.name);
+                    })
+                });
+            })
+        });
+    }
+
+
     // testet
     writeAllInstitutionsToDOM(cssSelector) {
         this.institutions.forEach(institutionitem => {
@@ -142,33 +168,6 @@ class InstitutionAdmin {
             });
         })
     } // writeSelectedArraysToDOM
-
-    // writeAllInstitutionsToDOM(input, cssSelector) {
-    //     if(input.institutions) {
-
-    //     } 
-        
-    // }
-
-
-
-
-
-      // testet
-    // writeEducationToDOM(education, cssSelector) {
-
-    //     this.institutions.forEach(institutionitem => {
-    //         if(institutionitem.length == 0){
-    //             console.log("der er ingen uddannelser på denne institution");
-    //         } else {
-    //             institutionitem.educations.forEach(educationitem => {
-    //                 if(educationitem == education || educationitem.name == education.name) {
-    //                     StaticClasses.createHTML(education,cssSelector);
-    //                 }
-    //             });
-    //         }
-    //     });
-    // }
 
 
 

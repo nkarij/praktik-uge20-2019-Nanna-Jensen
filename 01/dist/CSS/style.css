@@ -1,9 +1,102 @@
 @import 'bemskel.css';
-button {
+@import 'fonts.css';
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 150vh;
+  background-color: #3a3a3a;
+}
+
+.page-wrapper {
+  margin: 2rem 15rem;
+  height: 100%;
+  background-color: darkslategray;
+}
+
+.header {
+  background-color: black;
+}
+
+.admin-pageheading {
+  text-align: center;
+}
+
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem var(--page-frame-padding-lr);
+  height: 10vh;
+  width: 100%;
+  border-bottom: 3px solid var(--menu-active-color);
+}
+.main-nav > ul {
+  width: 100%;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.main-nav .menu-list {
+  justify-content: flex-start;
+}
+.main-nav .menu-list .menu-list__item {
+  width: var(--menu-tabs);
+  height: 100%;
+}
+.main-nav .menu-list .menu-list__icon-wrap .fas, .main-nav .menu-list .menu-list__icon-wrap .far {
+  font-size: 2rem;
+  line-height: 3rem;
+  color: var(--nav-text-color);
+}
+.main-nav .menu-list .menu-list__link {
+  display: inline-block;
+  height: 100%;
+  line-height: 3rem;
+  vertical-align: middle;
+}
+.main-nav .stat-list {
+  justify-content: flex-end;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.main-nav .stat-list .stat-list__icon {
+  height: var(--stat-tabs);
+  width: var(--stat-tabs);
+  position: relative;
+}
+.main-nav .stat-list .stat-list__badge {
+  height: 17px;
+  width: 15px;
+  border-radius: 5px;
+  background-color: red;
+  color: white;
+  position: absolute;
+  bottom: 0;
+  right: 6px;
+}
+
+.main {
+  padding: 2rem var(--page-frame-padding-lr);
+}
+
+.show-page-content {
   display: block;
-  margin: 10px auto;
-  height: 30px;
-  width: 20%;
+}
+
+.hide-page-content {
+  display: none;
+}
+
+#page-2 .data-list {
+  margin: 2rem auto;
+}
+
+#page-2 .data-list li {
+  margin: 1rem auto;
 }
 
 /*# sourceMappingURL=style.css.map */

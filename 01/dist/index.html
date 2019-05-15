@@ -4,22 +4,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="CSS/style.css">
     <title>Document</title>
 </head>
 <body>
 
-    <div id="list-container"></div>
+    <div id="page-wrapper" class="page-wrapper">
 
-    <button class="add-institution">Tilføj Institution</button>
-    <button class="remove-institution">Fjern Institution</button>
-    <button class="add-education-to-institution">Tilføj Uddannelse</button>
-    <button class="remove-education-from-institution">Fjern Uddannelse</button>
-    <button class="add-schoolclass-to-education">Tilføj Skoleklasse</button>
-    <button class="remove-schoolclass-from-education">Fjern Skoleklasse</button>
-    <button class="write-all-schoolclasses-to-dom">udskriv alle skoleklasser</button>
+        <header id="header" class="header">
+            <h1 class="admin-pageheading">EDUCATION SYSTEM MANAGER</h1>
+
+            <nav id="main-nav" class="main-nav">
+                <ul class="menu-list">
+                    <li class="menu-list__item">
+                        <span class="menu-list__icon-wrap">
+                            <i class="fas fa-home"></i>
+                        </span>
+                        <a href="#page-1" class="menu-list__link">HOME</a>
+                    </li>
+                    <li class="menu-list__item">
+                        <span class="menu-list__icon-wrap">
+                            <i class="fas fa-list"></i>
+                        </span>
+                        <a href="#page-2" class="menu-list__link">SHOW</a>
+                    </li>
+                    <li class="menu-list__item">
+                        <span class="menu-list__icon-wrap">
+                            <i class="far fa-edit"></i>
+                        </span>
+                        <a href="#page-3" class="menu-list__link">EDIT</a></li>
+                </ul>
 
 
+                <ul id="stat-list" class="stat-list">
+                    <li class="stat-list__icon institution-stats">I
+                        <span class="stat-list__badge"></span>
+                    </li>
+                    <li class="stat-list__icon education-stats">E
+                        <span class="stat-list__badge"></span>
+                    </li>
+                    <li class="stat-list__icon schoolclass-stats">C
+                        <span class="stat-list__badge"></span>
+                    </li>
+                    <li class="stat-list__icon student-stats">S
+                        <span class="stat-list__badge"></span>
+                    </li>
+                </ul>
+
+
+            </nav>
+
+        </header>
+
+        
+        <main class="main">
+
+            <!-- PAGE 1 -->
+            <div id="page-1" class="page show-page-content">
+                <h2 class="page__heading">EDUCATION SYSTEM MANAGER</h2>
+                <h3 class="page__subheading">Welcome to Institution Manager</h3>
+                <p class="page__paragraph"> Lorem ipsum dolor <em>sit amet</em> , consectetur adipisicing elit. Illo <em>perspiciatis repellat, voluptatum qui consectetur</em> laboriosam quibusdam.
+                </p>
+            </div>
+
+
+            <!-- PAGE 2 -->
+            
+            <div id="page-2" class="page hide-page-content">
+                <h2 class="page__heading">SHOW DATA</h2>
+                <button class="test-button">TEST</button>
+                <h3 class="page__subheading"></h3>
+                <p class="page__paragraph"></p>
+                <div class="data-container">
+
+                </div>
+            </div>
+
+            <!-- PAGE 3 -->
+            <div id="page-3" class="page hide-page-content">
+                <h2 class="page__heading">EDIT DATA</h2>
+
+                
+            </div>
+        </main>
+
+
+    </div>
+
+    <script src="EducationSystem/NavManager.js"></script>
+    <script src="EducationSystem/StatsManager.js"></script>
     <script src="EducationSystem/StaticClasses.js"></script>
     <script src="EducationSystem/InstitutionAdmin.js"></script>
     <script src="EducationSystem/Student.js"></script>
