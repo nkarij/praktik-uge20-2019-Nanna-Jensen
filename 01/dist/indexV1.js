@@ -90,7 +90,7 @@ jsonInstitutions.forEach(jsoninstitution => {
             educationObject.schoolclasses.push(schoolClassObject);
 
             jsonschoolclass.students.forEach(jsonschoolclass => {
-                let studentObject = new Schoolclass(jsonschoolclass.name, schoolClassObject);
+                let studentObject = new Student(jsonschoolclass.name, schoolClassObject);
                 // console.log(studentObject);
                 schoolClassObject.students.push(studentObject);
             });

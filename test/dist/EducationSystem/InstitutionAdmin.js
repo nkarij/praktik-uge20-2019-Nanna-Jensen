@@ -14,7 +14,8 @@ class InstitutionAdmin {
         return this.institutions;
     }
 
-    // testet
+    // testet, denne virker kun hvis data er oprettet som constructor
+    // brug istedet metoden i pageEditData...
     removeInstitution(institutionobject) {
         // loop array
         // hvis institutions-objekt = array[index]:
@@ -23,10 +24,20 @@ class InstitutionAdmin {
             if(inst == institutionobject || inst.name == institutionobject.name) {
                 this.institutions.splice(this.institutions.indexOf(inst), 1);
                 // skulle jeg egentlig ikke returnere de andre remove-methods?
+                StaticClasses.createEditedData(this.institutions, "#edit-data-container")
                 return this.institutions;
             }
         })
     }
+
+
+
+
+
+
+
+
+
 
 
 // testet

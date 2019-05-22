@@ -1,0 +1,53 @@
+{
+    "institutions": 
+    [
+		{
+			"name": "Roskilde",
+            "educations": 
+            [
+				{
+					"name": "Webudvikler",
+                    "schoolclasses": 
+                    [
+						{
+							"name": "WUHF01",
+                            "students": 
+                            [
+								{
+									"name": "Ole"
+								},
+								{
+									"name": "Hans"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "København",
+            "educations": 
+            [
+				{
+					"name": "Mediegrafiker",
+                    "schoolclasses": 
+                    [
+						{
+							"name": "MEHF01",
+                            "students": 
+                            [
+								{
+									"name": "Mickey"
+								},
+								{
+									"name": "Mouse"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

@@ -16,6 +16,10 @@ body {
   list-style: none;
 }
 
+#html-templates {
+  display: none;
+}
+
 .page-wrapper {
   margin: 2rem 15rem;
   height: 100%;
@@ -114,7 +118,10 @@ body {
   color: white;
 }
 
-#page-3 .data-container {
+.edit-data-container li {
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
   font-size: 1.5rem;
   color: white;
 }

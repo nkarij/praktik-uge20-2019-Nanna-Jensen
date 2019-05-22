@@ -17,14 +17,16 @@ body {
     background-color: rgb(58, 58, 58);
 }
 
-
-
 .ul, .li {
     padding: 0;
     margin: 0;
     list-style: none;
 }
 
+// HTML TEMPLATES
+#html-templates {
+    display: none;
+}
 
 // PAGEWRAPPER
 
@@ -164,10 +166,16 @@ body {
     color: white;
 }
 
-#page-3 .data-container {
+.edit-data-container li {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
     font-size: 1.5rem;
     color: white;
 }
+
+
+
 
 
 
