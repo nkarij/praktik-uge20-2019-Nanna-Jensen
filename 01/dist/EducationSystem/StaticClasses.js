@@ -1,12 +1,13 @@
 class StaticClasses {
 
-    constructor() {
+    static init() {
         this.class = "";
         this.index = 0;
     }
 
     // creates HTML
     static createHTML(innerhtml, cssSelector){
+        let parentElement = document.querySelector(cssSelector);
         let listElement = document.createElement("ul");
         listElement.classList.add(this.class);
         listElement.innerHTML = "";
@@ -14,19 +15,36 @@ class StaticClasses {
         listItem.classList.add(innerhtml.name);
         listItem.innerHTML = innerhtml.name;
         listElement.appendChild(listItem);
-        // this.appendHTML(listElement, cssSelector);
-        document.querySelector(cssSelector).appendChild(listElement);
+        parentElement.appendChild(listElement);
     }
 
-    // hjælpefunction til createHTML:
-    // static appendHTML(listelement, cssSelector) {
-    //     document.querySelector(cssSelector).appendChild(listelement);
-    // }
-
-    createID(){
-        this.index +=1;
-        console.log(this.index);
-        return this.index;
+    // creates the HTM for the Edit Page
+    static createEditedData(innerhtml, cssSelector){
+        let parentElement = document.querySelector(cssSelector);
+        // console.log(parentElement);
+        if(innerhtml == null) {
+            console.log("der er ikke noget data i createEditedData");
+            parentElement.innerHTML = "";
+        } else {
+            // parentElement.innerHTML = "";
+            let listElement = document.createElement("ul");
+            // listElement.classList.add(this.class);
+            // listElement.innerHTML = "";
+            let listItem = document.createElement("li");
+            listItem.classList.add(innerhtml.name);
+            listItem.innerHTML = innerhtml.name;
+            let editButton = document.createElement("button");
+            editButton.innerHTML = "Rediger";
+            editButton.classList.add("edit-data-button");
+            let removeButton = document.createElement("button");
+            removeButton.innerHTML = "Fjern";
+            removeButton.classList.add("remove-data-button");
+            listItem.insertAdjacentElement('beforeend', editButton);
+            listItem.insertAdjacentElement('beforeend', removeButton);
+            listElement.appendChild(listItem);
+            parentElement.appendChild(listElement);
+        }
     }
-
 }
+
+StaticClasses.init();

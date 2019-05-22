@@ -1,17 +1,19 @@
 document.addEventListener('DOMContentLoaded', function(){
 
+// VARIABLER TIL NAV MANAGER
+let classHidePage = "hide-page-content";
+let classShowPage = "show-page-content";
+
 // opret administrator
 let institutionManager = new InstitutionAdmin("Admin");
 // console.log(institutionManager);
 let statsManager = new StatsManager(institutionManager);
-let classHidePage = "hide-page-content";
-let classShowPage = "show-page-content"
 let navManager = new NavManager(classHidePage, classShowPage);
 let showDataManager = new PageShowData(institutionManager);
 
 // REFERENCER TIL HTML
-let testButtonWriteToDOM = document.querySelector(".test-button2");
-let cssSelector = "#list-container";
+// let testButtonWriteToDOM = document.querySelector(".test-button2");
+// let cssSelector = "#list-container";
 
 
 // HENTER DATA
@@ -66,42 +68,25 @@ jsonInstitutions.forEach(jsoninstitution => {
 
 // console.log(institutionManager);
 
-// // NU LIGGER ALTING KNYTTET TIL INSTITUTIONMANAGER
-// let student1 = institutionManager.institutions[0].educations[0].schoolclasses[0].students[0];
-
-// MÅSKE SKULLE JEG LAVE NOGLE GLOBALE INDEXVARIABLER VARIABLER:
-// måske skal jeg returnere inde i min class, så der ikke er gentagelser herunder.
-
-let institutionIndex = 1;
-let educationIndex = 0;
-let schoolClassIndex = 0;
-
-let institution = institutionManager.institutions[institutionIndex];
-let education = institution.educations[educationIndex];
-let schoolClass = education.schoolclasses[schoolClassIndex];
-
-// NB TJEK ALLE METODE-TESTS I INDEXV2.JS - DE ER SLETTET HER FOR OVERSKUELIGHED.
-
-pageLoadFrontPage();
-pageLoadAllData();
-pageLoadAllStats();
+loadFrontPage();
+loadShowDataPage();
+loadStatistics();
 
 // WRITE ALL DATA (AUTO);
-function pageLoadAllData() {
+function loadShowDataPage() {
     showDataManager.writeAllDataToDOM("#page-2 .data-container", "data-list");
-    showDataManager.writeAllInstitutionsToDOM("#page-3 .data-container", "ul");
 }
 
 
 // write all stats to page
-function pageLoadAllStats() {
+function loadStatistics() {
     statsManager.countAllInstitutions(".institution-stats span");
     statsManager.countAllEducations(".education-stats span");
     statsManager.countAllSchoolClasses(".schoolclass-stats span");
     statsManager.countAllSchoolStudents(".student-stats span"); 
 }
 
-function pageLoadFrontPage(){
+function loadFrontPage(){
     navManager.hidePages(".page");
     navManager.showCurrentPage("#page-1")
 }
@@ -126,83 +111,6 @@ menuTabsArray.forEach(menutab => {
         } 
     });
 });
-
-// EDIT DATA PAGE:
-// 1) EN MENU SOM VISER ALLE SUB-MENUER. 
-let editMenuTabArray = document.querySelectorAll("#page-3 .edit-menu__tab");
-// omdøb til cssSelector
-let editDataDisplayElement = "#page-3 .data-container";
-console.log(editDataDisplayElement);
-
-let testVariable = institutionManager.institutions[0].educations[0];
-let selectedInstitution;
-let selectedEducation;
-let selectedSchoolclass;
-let selectedStudent;
-let schoolClassManager = new Schoolclass("Navn", selectedEducation);
-
-testButtonWriteToDOM.addEventListener('click', function(){
-    testVariable.writeSchoolClassToDom(0, editDataDisplayElement);
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// MENU TAB BAR:
-
-// editMenuTabArray.forEach(menutab => {
-//     menutab.addEventListener('click', function(event) {
-//         event.preventDefault();
-//         let currentDataPool = event.currentTarget.dataset.datapool;
-//         if(currentDataPool == "0") {
-//             // console.log(currentDataPool)
-//             showDataManager.writeAllInstitutionsToDOM(editDataDisplayElement, "ul");
-//         }
-//         if(currentDataPool == "1") {
-//             showDataManager.writeAllEducationsToDOM(editDataDisplayElement, "ul");
-//         }
-//         if(currentDataPool == "2") {
-//             showDataManager.writeAllSchoolClassesToDOM(editDataDisplayElement, "ul");
-//         }
-//         if(currentDataPool == "3") {
-//             showDataManager.writeAllStudentsToDOM(editDataDisplayElement, "ul");
-//         }
-//     });
-// });
-
-// CLICK ON DATA TO END UP WITH STUDENT;
-// ADD SCHOOL CLASS TO EDUCATION
-//  ER NÅET HER TIL, SKAL TIL AT TILFØJE NY KLASSE.
-// husk at institution index + educationindex er defineret længere oppe.
-
-let inputFromDom = "Roskilde";
-let instutionsDataArray = document.querySelectorAll("#page-3 .data-container li");
-// console.log(instutionsDataArray);
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }); // fetch slutter

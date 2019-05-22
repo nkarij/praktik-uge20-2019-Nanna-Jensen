@@ -14,21 +14,6 @@ class InstitutionAdmin {
         return this.institutions;
     }
 
-    // testet
-    removeInstitution(institutionobject) {
-        // loop array
-        // hvis institutions-objekt = array[index]:
-        // splice(indexOf(array[index]), 1)
-        this.institutions.forEach(inst => {
-            if(inst == institutionobject || inst.name == institutionobject.name) {
-                this.institutions.splice(this.institutions.indexOf(inst), 1);
-                // skulle jeg egentlig ikke returnere de andre remove-methods?
-                return this.institutions;
-            }
-        })
-    }
-
-
 // testet
 // her skal if-sætningerne omfatte .name, så det kan komme fra input hvis jeg får tid.
     writeSelectedSingleInputToDOM(input, cssSelector) {

@@ -10,8 +10,8 @@ let navManager = new NavManager(classHidePage, classShowPage);
 let showDataManager = new PageShowData(institutionManager);
 
 // REFERENCER TIL HTML
-let testButtonWriteToDOM = document.querySelector(".test-button2");
-let cssSelector = "#list-container";
+// let testButtonWriteToDOM = document.querySelector(".test-button2");
+// let cssSelector = "#list-container";
 
 
 // HENTER DATA
@@ -128,22 +128,22 @@ menuTabsArray.forEach(menutab => {
 });
 
 // EDIT DATA PAGE:
-// 1) EN MENU SOM VISER ALLE SUB-MENUER. 
-let editMenuTabArray = document.querySelectorAll("#page-3 .edit-menu__tab");
-// omdøb til cssSelector
-let editDataDisplayElement = "#page-3 .data-container";
-console.log(editDataDisplayElement);
+// // 1) EN MENU SOM VISER ALLE SUB-MENUER. 
+// let editMenuTabArray = document.querySelectorAll("#page-3 .edit-menu__tab");
+// // omdøb til cssSelector
+// let editDataDisplayElement = "#page-3 .data-container";
+// console.log(editDataDisplayElement);
 
-let testVariable = institutionManager.institutions[0].educations[0];
-let selectedInstitution;
-let selectedEducation;
-let selectedSchoolclass;
-let selectedStudent;
-let schoolClassManager = new Schoolclass("Navn", selectedEducation);
+// let testVariable = institutionManager.institutions[0].educations[0];
+// let selectedInstitution;
+// let selectedEducation;
+// let selectedSchoolclass;
+// let selectedStudent;
+// let schoolClassManager = new Schoolclass("Navn", selectedEducation);
 
-testButtonWriteToDOM.addEventListener('click', function(){
-    testVariable.writeSchoolClassToDom(0, editDataDisplayElement);
-})
+// testButtonWriteToDOM.addEventListener('click', function(){
+//     testVariable.writeSchoolClassToDom(0, editDataDisplayElement);
+// })
 
 
 
@@ -187,8 +187,8 @@ testButtonWriteToDOM.addEventListener('click', function(){
 //  ER NÅET HER TIL, SKAL TIL AT TILFØJE NY KLASSE.
 // husk at institution index + educationindex er defineret længere oppe.
 
-let inputFromDom = "Roskilde";
-let instutionsDataArray = document.querySelectorAll("#page-3 .data-container li");
+// let inputFromDom = "Roskilde";
+// let instutionsDataArray = document.querySelectorAll("#page-3 .data-container li");
 // console.log(instutionsDataArray);
 
 

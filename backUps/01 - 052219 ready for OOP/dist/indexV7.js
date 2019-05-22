@@ -161,7 +161,7 @@ function selectedByIndex(){
             // HER SKAL MAN SÅ SKRIVE SELECTEDINSTITUTIONS.EDUCATIONS TIL DOM'EN....
             editDataManager.writeSelectedEducationsToDOM(selectedInstitution);
             // console.log(selectedInstitution);
-            // preparePageEdit samler alle nedenstående functions.
+            // preparePageEdit samler alle understående functions.
             preparePageEdit(selectedInstitution.educations);
             // addDatasetIndex();
             // addClickEvent();
@@ -207,6 +207,15 @@ function selectedByIndex(){
 }
 
 
+function preparePageEdit(array) {
+    // NB KØRER DISSE 4 FUNCTIONER SAMLET, FLERE GANGE, SKAL LÆGGES IND I FUNCTION
+    console.log(array);
+    addDatasetIndex();
+    addClickEvent();
+    removeDataButtonEvent(array);
+    editDataButtonEvent(array);
+}
+
 // tilhører selectByIndex
 // removeDataButtonEvent, som fjerner punkter på listen
 function removeDataButtonEvent(array){
@@ -247,8 +256,7 @@ let clonedForm = formTemplate.cloneNode(true);
 
 // tilhører selectByIndex
 function editDataButtonEvent(array){
-    // kan laves om til if(event.target == event.currentTarget) > parentNode.dataset.index
-    // let buttonElement = document.querySelector("#page-3 .edit-data-button");
+
     let buttonElementArray = document.querySelectorAll("#page-3 .edit-data-button");
     console.log(buttonElementArray);
 
@@ -262,7 +270,7 @@ function editDataButtonEvent(array){
                     let selectThisObjectToEdit = array[linkElementIndex];
 
                     updateFormUI(selectThisObjectToEdit);
-
+                    console.log(array);
                     updatePageUI(array, selectThisObjectToEdit);
                 }
         });
@@ -286,6 +294,9 @@ function queryArray(cssSelector) {
 }
 
 // ---------------------- EDIT DATA PAGE - UPDATE UI ------------------------------ 
+
+
+
 function updateFormUI(selectedobject) {
     clonedForm.children[1].innerHTML = selectedobject.name;
     clearDataContainer();
@@ -293,7 +304,7 @@ function updateFormUI(selectedobject) {
 }
 
 function updatePageUI(array, selecttoedit) {
-
+    console.log(array);
     let buttonSubmitEditedData = clonedForm.querySelector(".form-template__submit-form");
     // console.log(buttonSubmitEditedData);
 
@@ -302,6 +313,7 @@ function updatePageUI(array, selecttoedit) {
         let formInput = clonedForm.editname.value;
         selecttoedit.name = formInput;
         clearDataContainer();
+        console.log(array);
         array.forEach(item => {
             StaticClasses.createEditedData(item, editDataCssSelector);
         });
@@ -309,13 +321,7 @@ function updatePageUI(array, selecttoedit) {
     });
 }
 
-function preparePageEdit(array) {
-    // NB KØRER DISSE 4 FUNCTIONER SAMLET, FLERE GANGE, SKAL LÆGGES IND I FUNCTION
-    addDatasetIndex();
-    addClickEvent();
-    removeDataButtonEvent(array);
-    editDataButtonEvent(array);
-}
+
 
 // function som tømmer min data-container, så der kan indsættes en ny liste
 function clearDataContainer() {

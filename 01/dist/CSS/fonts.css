@@ -49,6 +49,10 @@ a {
     font-weight: bold;
 }
 
+.stat-list__badge {
+    font-size: 1.5rem;
+}
+
 
 /* page 1 */
 

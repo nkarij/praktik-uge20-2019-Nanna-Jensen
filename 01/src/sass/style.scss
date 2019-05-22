@@ -17,14 +17,16 @@ body {
     background-color: rgb(58, 58, 58);
 }
 
-
-
 .ul, .li {
     padding: 0;
     margin: 0;
     list-style: none;
 }
 
+// HTML TEMPLATES
+#html-templates {
+    display: none;
+}
 
 // PAGEWRAPPER
 
@@ -94,36 +96,9 @@ body {
             vertical-align: middle;
         }
 
-        // .menu-list__link--active {
-        //     background-color: rgb(1, 1, 167);
-        // }
-
-           
-    }
-
-    .stat-list {
-        justify-content: flex-end;
-        padding: 0;
-        margin: 0;
-        list-style: none;
-
-        .stat-list__icon {
-            height: var(--stat-tabs);
-            width: var(--stat-tabs);
-            // se også fonts.css
-            position: relative;
-        }
-        
-        .stat-list__badge {
-            height: 17px;
-            width: 15px;
-            border-radius: 5px;
-            background-color: red;
-            color: white;
-            position: absolute;
-            bottom: 0;
-            right: 6px;
-        }
+        .menu-list__link--active {
+            background-color: rgb(1, 1, 167);
+        }           
     }
 }
 
@@ -139,6 +114,32 @@ body {
 
 .hide-page-content {
     display: none;
+}
+
+.stat-list {
+    justify-content: flex-end;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.stat-list__icon {
+    height: var(--stat-tabs);
+    width: var(--stat-tabs);
+    // se også fonts.css
+    position: relative;
+}
+
+.stat-list__badge {
+    height: 17px;
+    width: 15px;
+    border-radius: 5px;
+    background-color: red;
+    color: white;
+    position: absolute;
+    bottom: 0;
+    right: 6px;
+    text-align: center;
 }
 
 
@@ -164,10 +165,16 @@ body {
     color: white;
 }
 
-#page-3 .data-container {
+.edit-data-container li {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
     font-size: 1.5rem;
     color: white;
 }
+
+
+
 
 
 

@@ -1,4 +1,5 @@
 class Education {
+
     constructor(name, institution) {
         this.name = name;
         this.institution = institution;
@@ -29,36 +30,5 @@ class Education {
             }
         })
     }
-
-    writeSchoolClassToDom(schoolclassindex, cssSelector){
-        if(this.schoolclasses.length == 0){
-            console.log("der er ingen skoleklasser i denne uddannelse");
-        } else {
-            let listElement = document.createElement("ul");
-            listElement.innerHTML = "";
-    
-            for (let index = 0; index < this.schoolclasses.length; index++) {
-
-                const schoolclass = this.schoolclasses[index];
-                // console.log(schoolclass);
-                const schoolclassIndex = this.schoolclasses.indexOf(schoolclass);
-                // console.log(schoolclassIndex);
-                if(schoolclassIndex == schoolclassindex) {
-                        let selectedSchoolClass = this.schoolclasses[schoolclassIndex];
-                        console.log(selectedSchoolClass);
-                        let listItem = document.createElement("li");
-                        listItem.innerHTML = selectedSchoolClass.name;
-                        listElement.appendChild(listItem);
-                } 
-            }
-            document.querySelector(cssSelector).appendChild(listElement);
-        }   
-    }
-
-    // // her henter jeg index fra 
-    // getClassIndexByReference(schoolclass){
-    //     let schoolClassIndex = this.schoolclasses.indexOf(schoolclass);
-    //     console.log(schoolclass);
-    // }
  
 }
